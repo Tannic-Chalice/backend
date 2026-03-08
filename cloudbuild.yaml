@@ -1,0 +1,18 @@
+steps:
+  - name: 'ubuntu'
+    args: ['bash', '-c', 'chown -R 1000:1000 .']
+
+  - name: 'gcr.io/k8s-skaffold/pack'
+    entrypoint: pack
+    args:
+      - build
+      - asia-south1-docker.pkg.dev/fluent-service-473606-s4/oribackend/oribackend
+      - --builder=gcr.io/buildpacks/builder:google-22
+      - --publish
+      - --trust-builder
+
+images:
+  - asia-south1-docker.pkg.dev/fluent-service-473606-s4/oribackend/oribackend
+
+options:
+  logging: CLOUD_LOGGING_ONLY
