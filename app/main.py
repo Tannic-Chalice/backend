@@ -26,7 +26,7 @@ from app.routers.admin import billing
 from app.routers.admin import bwg_payment
 from app.scheduler import init_scheduler, shutdown_scheduler
 
-
+ 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("uvicorn")
