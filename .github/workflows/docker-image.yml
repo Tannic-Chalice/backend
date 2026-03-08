@@ -23,5 +23,9 @@ jobs:
     - name: Build the Docker image
       run: docker build -t ${{secrets.DOCKER_USERNAME}}/test-image:$(date +%s) .
 
-    - name: Push to Docker hub
-      run: docker push ${{ secrets.DOCKER_USERNAME }}/test-image:$(date +%s)
+    - name: Push Docker image to Docker Hub
+      run: |
+        IMAGE_NAME=test-image
+        TAG=$(date +%s)
+        docker tag $IMAGE_NAME:$TAG ${{ secrets.DOCKER_USERNAME }}/$IMAGE_NAME:$TAG
+        docker push ${{ secrets.DOCKER_USERNAME }}/$IMAGE_NAME:$TAG
